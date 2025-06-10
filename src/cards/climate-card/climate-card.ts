@@ -58,6 +58,7 @@ type ClimateCardControl = "temperature_control" | "hvac_mode_control" | "optiona
 const CONTROLS_ICONS: Record<ClimateCardControl, string> = {
   temperature_control: "mdi:thermometer",
   hvac_mode_control: "mdi:thermostat",
+  optional_mode_control: "mdi:auto-mode",
 };
 
 registerCustomCard({
@@ -288,7 +289,7 @@ export class ClimateCard
 
   private renderActiveControl(entity: ClimateEntity) {
     const hvac_modes = this._config!.hvac_modes ?? [];
-    const optinal_modes = this._config!.optinal_modes ?? [];
+    const optional_modes = this._config!.optional_modes ?? [];
     const appearance = computeAppearance(this._config!);
 
     switch (this._activeControl) {
