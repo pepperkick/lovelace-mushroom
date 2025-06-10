@@ -40,7 +40,7 @@ export class ClimateOptionalModesControl extends LitElement {
   protected render(): TemplateResult {
     const rtl = computeRTL(this.hass);
 
-    const modes = this.entity.attributes.hvac_modes
+    const modes = this.entity.attributes.optinal_modes
       .filter((mode) => (this.modes ?? []).includes(mode))
       .sort(compareClimateOptionalModes);
 

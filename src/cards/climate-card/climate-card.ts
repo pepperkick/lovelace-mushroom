@@ -43,6 +43,8 @@ import {
 } from "./const";
 import "./controls/climate-hvac-modes-control";
 import { isHvacModesVisible } from "./controls/climate-hvac-modes-control";
+import "./controls/climate-optional-modes-control";
+import { isOptionalModesVisible } from "./controls/climate-optional-modes-control";
 import "./controls/climate-temperature-control";
 import { isTemperatureControlVisible } from "./controls/climate-temperature-control";
 import {
@@ -51,7 +53,7 @@ import {
   getHvacModeColor,
 } from "./utils";
 
-type ClimateCardControl = "temperature_control" | "hvac_mode_control";
+type ClimateCardControl = "temperature_control" | "hvac_mode_control" | "optional_mode_control";
 
 const CONTROLS_ICONS: Record<ClimateCardControl, string> = {
   temperature_control: "mdi:thermometer",
@@ -148,7 +150,7 @@ export class ClimateCard
       ? this._activeControl
       : this._controls[0];
   }
-  
+
 
   private _handleAction(ev: ActionHandlerEvent) {
     handleAction(this, this.hass!, this._config!, ev.detail.action!);
@@ -286,6 +288,7 @@ export class ClimateCard
 
   private renderActiveControl(entity: ClimateEntity) {
     const hvac_modes = this._config!.hvac_modes ?? [];
+    const optinal_modes = this._config!.optinal_modes ?? [];
     const appearance = computeAppearance(this._config!);
 
     switch (this._activeControl) {
