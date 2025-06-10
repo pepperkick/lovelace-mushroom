@@ -105,6 +105,9 @@ export class ClimateCard
     if (isHvacModesVisible(stateObj, this._config.hvac_modes)) {
       controls.push("hvac_mode_control");
     }
+    if (isOptionalModesVisible(stateObj, this._config.optional_modes)) {
+      controls.push("optional_mode_control");
+    }
     return controls;
   }
 
@@ -302,6 +305,15 @@ export class ClimateCard
             .fill=${appearance.layout !== "horizontal"}
           ></mushroom-climate-hvac-modes-control>
         `;
+      case "optional_mode_control":
+        return html`
+          <mushroom-climate-optional-modes-control
+            .hass=${this.hass}
+            .entity=${entity}
+            .modes=${optional_modes}
+            .fill=${appearance.layout !== "horizontal"}
+          ></mushroom-climate-optional-modes-control>
+        `;
       default:
         return nothing;
     }
@@ -316,6 +328,7 @@ export class ClimateCard
           cursor: pointer;
         }
         mushroom-climate-temperature-control,
+        mushroom-climate-optional-modes-control 
         mushroom-climate-hvac-modes-control {
           flex: 1;
         }

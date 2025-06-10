@@ -1,4 +1,4 @@
-import { HvacAction, HvacMode } from "../../ha";
+import { HvacAction, HvacMode, OptionalAction, OptionalMode } from "../../ha";
 
 export const CLIMATE_HVAC_MODE_COLORS: Record<HvacMode, string> = {
   auto: "var(--rgb-state-climate-auto)",
@@ -52,4 +52,58 @@ export function getHvacModeIcon(hvacMode: HvacMode): string {
 
 export function getHvacActionIcon(hvacAction: HvacAction): string | undefined {
   return CLIMATE_HVAC_ACTION_ICONS[hvacAction] ?? "";
+}
+
+export const CLIMATE_OPTIONAL_MODE_COLORS: Record<OptionalMode, string> = {
+  wind_free_sleep: "var(--rgb-state-climate-wind-free-sleep)",
+  wind_free: "var(--rgb-state-climate-wind-free)",
+  speed: "var(--rgb-state-climate-speed)",
+  quiet: "var(--rgb-state-climate-quiet)",
+  sleep: "var(--rgb-state-climate-sleep)",
+  off: "var(--rgb-state-climate-off)",
+};
+
+export const CLIMATE_MODEL_ACTION_COLORS: Record<OptionalAction, string> = {
+  wind_free_sleep: "var(--rgb-state-climate-wind-free-sleep)",
+  wind_free: "var(--rgb-state-climate-wind-free)",
+  speed: "var(--rgb-state-climate-speed)",
+  quiet: "var(--rgb-state-climate-quiet)",
+  sleep: "var(--rgb-state-climate-sleep)",
+  off: "var(--rgb-state-climate-off)",
+};
+
+export const CLIMATE_OPTIONAL_MODE_ICONS: Record<OptionalMode, string> = {
+  wind_free_sleep: "mdi:wind-power-outline",
+  wind_free: "mdi:wind-power",
+  speed: "mdi:fan",
+  quiet: "mdi:volume-low",
+  sleep: "mdi:power-sleep",
+  off: "mdi:power",
+};
+
+export const CLIMATE_OPTIONAL_ACTION_ICONS: Record<OptionalAction, string> = {
+  wind_free_sleep: "mdi:wind-power-outline",
+  wind_free: "mdi:wind-power",
+  speed: "mdi:fan",
+  quiet: "mdi:volume-low",
+  sleep: "mdi:power-sleep",
+  off: "mdi:power",
+};
+
+export function getOptionalModeColor(hvacMode: OptionalMode): string {
+  return CLIMATE_OPTIONAL_MODE_COLORS[hvacMode] ?? CLIMATE_OPTIONAL_MODE_COLORS.off;
+}
+
+export function getOptionalActionColor(hvacAction: OptionalAction): string {
+  return (
+    CLIMATE_MODEL_ACTION_COLORS[hvacAction] ?? CLIMATE_HVAC_ACTION_COLORS.off
+  );
+}
+
+export function getOptionalModeIcon(hvacMode: OptionalMode): string {
+  return CLIMATE_OPTIONAL_MODE_ICONS[hvacMode] ?? "mdi:thermostat";
+}
+
+export function getOptionalActionIcon(hvacAction: OptionalAction): string | undefined {
+  return CLIMATE_OPTIONAL_ACTION_ICONS[hvacAction] ?? "";
 }

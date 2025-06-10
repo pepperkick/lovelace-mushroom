@@ -14,10 +14,11 @@ import {
   ClimateCardConfig,
   climateCardConfigStruct,
   HVAC_MODES,
+  OPTIONAL_MODES,
 } from "./climate-card-config";
 import { CLIMATE_CARD_EDITOR_NAME, CLIMATE_ENTITY_DOMAINS } from "./const";
 
-const CLIMATE_LABELS = ["hvac_modes", "show_temperature_control"] as string[];
+const CLIMATE_LABELS = ["hvac_modes", "show_temperature_control", "optinal_modes"] as string[];
 
 const computeSchema = memoizeOne((localize: LocalizeFunc): HaFormSchema[] => [
   { name: "entity", selector: { entity: { domain: CLIMATE_ENTITY_DOMAINS } } },
@@ -33,6 +34,21 @@ const computeSchema = memoizeOne((localize: LocalizeFunc): HaFormSchema[] => [
         selector: {
           select: {
             options: HVAC_MODES.map((mode) => ({
+              value: mode,
+              label: localize(
+                `component.climate.entity_component._.state.${mode}`
+              ),
+            })),
+            mode: "dropdown",
+            multiple: true,
+          },
+        },
+      },
+      {
+        name: "optional_modes",
+        selector: {
+          select: {
+            options: OPTIONAL_MODES.map((mode) => ({
               value: mode,
               label: localize(
                 `component.climate.entity_component._.state.${mode}`
