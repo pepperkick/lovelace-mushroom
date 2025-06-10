@@ -12,3 +12,10 @@ jobs:
               run: npm ci
             - name: Build
               run: npm run build
+            - name: Test
+              run: ls ./dist
+            - name: Upload artifact
+              uses: actions/upload-artifact@v3
+              with:
+                name: dist
+                path: ./dist/*.js
