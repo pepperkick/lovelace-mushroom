@@ -148,6 +148,7 @@ export class ClimateCard
       ? this._activeControl
       : this._controls[0];
   }
+  
 
   private _handleAction(ev: ActionHandlerEvent) {
     handleAction(this, this.hass!, this._config!, ev.detail.action!);
